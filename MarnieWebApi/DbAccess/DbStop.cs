@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MarnieWebApi.DbAccess
 {
-    public class DbDate : DBInterface<Date>
+    public class DbStop
     {
         public void Delete(int id)
         {
@@ -13,65 +13,97 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var date = new Date { Id = id };
-                    db.Dates.Attach(date);
-                    db.Dates.Remove(date);
+                    var stop = new Stop { Id = id };
+                    db.Stops.Attach(stop);
+                    db.Stops.Remove(stop);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public ICollection<Date> GetAllWithRelations()
+        public Stop Get(int id)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Dates.Include(p => p.PersonDates).ToList();
+                    return db.Stops.Find(id);
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public Date GetWithRelations(int id)
+        public ICollection<Stop> GetAll()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Dates.Where(p => p.Id == id).Include(p => p.PersonDates).FirstOrDefault();
+                    return db.Stops.ToList();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public void Insert(Date item)
+        public ICollection<Stop> GetAllWithRelations()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    db.Dates.Add(item);
+                    return db.Stops.Include(p => p.Route).Include(p => p.Station).ToList();
+                }
+                catch (System.Exception e)
+                {
+
+                    throw e;
+                }
+            }
+        }
+
+        public Stop GetWithRelations(int id)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Stops.Where(p => p.Id == id).Include(p => p.Route).Include(p => p.Station).FirstOrDefault();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public void Insert(Stop item)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    db.Stops.Add(item);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
+
             }
         }
 
-        public void Update(Date item)
+        public void Update(Stop item)
         {
             using (var db = new MyDbContext())
             {
@@ -83,7 +115,7 @@ namespace MarnieWebApi.DbAccess
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
     }

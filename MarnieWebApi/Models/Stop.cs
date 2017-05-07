@@ -1,10 +1,7 @@
 namespace MarnieWebApi.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Stop")]
     public partial class Stop
@@ -22,6 +19,11 @@ namespace MarnieWebApi.Models
             StationId = stationId;
             ArrivalTime = arrivalTime;
             DepartureTime = departureTime;
+        }
+
+        public Stop()
+        {
+
         }
 
         public int Id { get; set; }

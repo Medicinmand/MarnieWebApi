@@ -97,10 +97,18 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DateController.cs" />
+    <Compile Include="Controllers\JorneyController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\StopController.cs" />
     <Compile Include="DbAccess\DbDate.cs" />
     <Compile Include="DbAccess\DBInterface.cs" />
+    <Compile Include="DbAccess\DbJorney.cs" />
     <Compile Include="DbAccess\DbPerson.cs" />
+    <Compile Include="DbAccess\DbRoute.cs" />
+    <Compile Include="DbAccess\DbStation.cs" />
+    <Compile Include="DbAccess\DbStop.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

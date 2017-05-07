@@ -11,10 +11,17 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                var person = new Person { Id = id };
-                db.Persons.Attach(person);
-                db.Persons.Remove(person);
-                db.SaveChanges();
+                try
+                {
+                    var person = new Person { Id = id };
+                    db.Persons.Attach(person);
+                    db.Persons.Remove(person);
+                    db.SaveChanges();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }                
             }
         }
 
@@ -22,7 +29,14 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                return db.Persons.Find(id);
+                try
+                {
+                    return db.Persons.Find(id);
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }                
             }
         }
 
@@ -30,7 +44,14 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                return db.Persons.ToList();
+                try
+                {
+                    return db.Persons.ToList();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }                
             }
         }
 
@@ -38,7 +59,15 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                return db.Persons.Include(p => p.PersonDates).Include(p => p.Jorneys).ToList();
+                try
+                {
+                    return db.Persons.Include(p => p.PersonDates).Include(p => p.Jorneys).ToList();
+                }
+                catch (System.Exception e)
+                {
+
+                    throw e;
+                }                
             }
         }
 
@@ -46,7 +75,14 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                return db.Persons.Where(p => p.Id == id).Include(p => p.PersonDates).Include(p => p.Jorneys).FirstOrDefault();
+                try
+                {
+                    return db.Persons.Where(p => p.Id == id).Include(p => p.PersonDates).Include(p => p.Jorneys).FirstOrDefault();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }                
             }
         }
 
@@ -54,8 +90,16 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                db.Persons.Add(item);
-                db.SaveChanges();
+                try
+                {
+                    db.Persons.Add(item);
+                    db.SaveChanges();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+                
             }
         }
 
@@ -63,8 +107,15 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }                
             }
         }
     }

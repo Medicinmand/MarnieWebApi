@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MarnieWebApi.DbAccess
 {
-    public class DbDate : DBInterface<Date>
+    public class DbJorney : DBInterface<Jorney>
     {
         public void Delete(int id)
         {
@@ -13,65 +13,97 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var date = new Date { Id = id };
-                    db.Dates.Attach(date);
-                    db.Dates.Remove(date);
+                    var jorney = new Jorney { Id = id };
+                    db.Jorneys.Attach(jorney);
+                    db.Jorneys.Remove(jorney);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public ICollection<Date> GetAllWithRelations()
+        public Jorney Get(int id)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Dates.Include(p => p.PersonDates).ToList();
+                    return db.Jorneys.Find(id);
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public Date GetWithRelations(int id)
+        public ICollection<Jorney> GetAll()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Dates.Where(p => p.Id == id).Include(p => p.PersonDates).FirstOrDefault();
+                    return db.Jorneys.ToList();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
 
-        public void Insert(Date item)
+        public ICollection<Jorney> GetAllWithRelations()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    db.Dates.Add(item);
+                    return db.Jorneys.Include(p => p.Person).Include(p => p.Route).ToList();
+                }
+                catch (System.Exception e)
+                {
+
+                    throw e;
+                }
+            }
+        }
+
+        public Jorney GetWithRelations(int id)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Jorneys.Where(p => p.Id == id).Include(p => p.Person).Include(p => p.Route).FirstOrDefault();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public void Insert(Jorney item)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    db.Jorneys.Add(item);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
+
             }
         }
 
-        public void Update(Date item)
+        public void Update(Jorney item)
         {
             using (var db = new MyDbContext())
             {
@@ -83,7 +115,7 @@ namespace MarnieWebApi.DbAccess
                 catch (System.Exception e)
                 {
                     throw e;
-                }                
+                }
             }
         }
     }

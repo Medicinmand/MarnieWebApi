@@ -27,7 +27,7 @@ namespace MarnieWebApi.Controllers
         }
 
         // PUT: api/Jorney/5
-        public void Put(int id, [FromBody]Jorney jorney)
+        public void Put([FromBody]Jorney jorney)
         {
             db.Update(jorney);
         }

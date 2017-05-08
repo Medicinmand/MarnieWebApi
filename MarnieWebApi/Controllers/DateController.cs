@@ -28,7 +28,7 @@ namespace MarnieWebApi.Controllers
         }
 
         // PUT: api/Date/5
-        public void Put(int id, [FromBody]Date date)
+        public void Put([FromBody]Date date)
         {
             db.Update(date);
         }

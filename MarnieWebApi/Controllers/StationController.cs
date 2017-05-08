@@ -28,7 +28,7 @@ namespace MarnieWebApi.Controllers
         }
 
         // PUT: api/Station/5
-        public void Put(int id, [FromBody]Station station)
+        public void Put([FromBody]Station station)
         {
             db.Update(station);
         }

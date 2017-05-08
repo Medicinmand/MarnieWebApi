@@ -61,7 +61,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Persons.Include(p => p.PersonDates).Include(p => p.Jorneys).ToList();
+                    return db.Persons.Include(p => p.Dates).Include(p => p.Jorneys).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -77,7 +77,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Persons.Where(p => p.Id == id).Include(p => p.PersonDates).Include(p => p.Jorneys).FirstOrDefault();
+                    return db.Persons.Where(p => p.Id == id).Include(p => p.Dates).Include(p => p.Jorneys).FirstOrDefault();
                 }
                 catch (System.Exception e)
                 {
@@ -98,8 +98,7 @@ namespace MarnieWebApi.DbAccess
                 catch (System.Exception e)
                 {
                     throw e;
-                }
-                
+                }                
             }
         }
 

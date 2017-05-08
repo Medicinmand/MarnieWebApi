@@ -1,10 +1,8 @@
 namespace MarnieWebApi.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Date")]
     public partial class Date
@@ -13,16 +11,6 @@ namespace MarnieWebApi.Models
         public Date()
         {
 
-        }
-
-        public Date(int routeId, string dateStartLocation, DateTime startTime, string dateDestination, DateTime endTime, int status)
-        {
-            RouteId = routeId;
-            DateStartLocation = dateStartLocation;
-            StartTime = startTime;
-            DateDestination = dateDestination;
-            EndTime = endTime;
-            Status = status;
         }
 
         public int Id { get; set; }
@@ -41,11 +29,20 @@ namespace MarnieWebApi.Models
 
         public DateTime EndTime { get; set; }
 
-        public int Status { get; set; }
+        public int Person1Id { get; set; }
+
+        public Person Person1 { get; set; }
+
+        public int Person2Id { get; set; }
+
+        public Person Person2 { get; set; }
+
+        public int StatusP1 { get; set; }
+
+        public int StatusP2 { get; set; }
+
+        public int DateStatus { get; set; }
 
         public Route Route { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<PersonDate> PersonDates { get; set; } = new HashSet<PersonDate>();
     }
 }

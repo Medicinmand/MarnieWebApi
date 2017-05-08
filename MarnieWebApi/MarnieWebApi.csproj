@@ -116,7 +116,6 @@
     <Compile Include="Models\Jorney.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\PersonDate.cs" />
     <Compile Include="Models\Route.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Stop.cs" />

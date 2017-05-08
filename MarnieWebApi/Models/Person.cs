@@ -4,6 +4,7 @@ namespace MarnieWebApi.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
     [Table("Person")]
     public partial class Person
@@ -11,11 +12,24 @@ namespace MarnieWebApi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
+            Jorneys = new HashSet<Jorney>();
+            PersonDates = new HashSet<PersonDate>();
+        }
+
+        public Person(string authId, string name, DateTime birthday, string gender, string profilePicture)
+        {
+            AuthId = authId;
+            Name = name;
+            Birthday = birthday;
+            Gender = gender;
+            ProfilePicture = profilePicture;
+            Jorneys = new HashSet<Jorney>();
+            PersonDates = new HashSet<PersonDate>();
         }
 
         public int Id { get; set; }
 
-        public int AuthId { get; set; }
+        public string AuthId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -32,9 +46,9 @@ namespace MarnieWebApi.Models
         public string ProfilePicture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Jorney> Jorneys { get; set; } = new List<Jorney>();
+        public ICollection<Jorney> Jorneys { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Date> Dates { get; set; } = new List<Date>();
+        public ICollection<PersonDate> PersonDates { get; set; }
     }
 }

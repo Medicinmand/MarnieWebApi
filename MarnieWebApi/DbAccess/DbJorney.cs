@@ -61,7 +61,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Jorneys.Include(p => p.Person).Include(p => p.Route).ToList();
+                    return db.Jorneys.Include(x => x.Person).Include(x => x.Route).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -77,7 +77,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var tempList = db.Jorneys.Include(p => p.Person).Include(p => p.Route).ToList();
+                    var tempList = db.Jorneys.Include(x => x.Person).Include(x => x.Route).ToList();
                     //TODO
                     return jorneyList;
                 }
@@ -94,7 +94,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Jorneys.Where(p => p.Id == id).Include(p => p.Person).Include(p => p.Route).FirstOrDefault();
+                    return db.Jorneys.Where(x => x.Id == id).Include(x => x.Person).Include(x => x.Route).FirstOrDefault();
                 }
                 catch (System.Exception e)
                 {

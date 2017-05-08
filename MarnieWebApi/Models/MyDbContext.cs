@@ -19,13 +19,20 @@ namespace MarnieWebApi.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>()
-                .HasMany(e => e.Jorneys)
-                .WithRequired(e => e.Person)
+                .HasMany(e => e.Dates)
+                .WithRequired(e => e.Person1)
+                .HasForeignKey(e => e.Person1Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Dates)
-                .WithRequired(e => e.Person1)                
+                .WithRequired(e => e.Person2)
+                .HasForeignKey(e => e.Person2Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.Jorneys)
+                .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Route>()

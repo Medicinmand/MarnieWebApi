@@ -61,7 +61,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Routes.Include(p => p.Stops).ToList();
+                    return db.Routes.Include(x => x.Stops).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -78,7 +78,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var tempList = db.Routes.Include(p => p.Stops).ToList();
+                    var tempList = db.Routes.Include(x => x.Stops).ToList();
                     foreach (var item in tempList)
                     {
                         //TODO
@@ -100,7 +100,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Routes.Where(p => p.Id == id).Include(p => p.Stops).FirstOrDefault();
+                    return db.Routes.Where(x => x.Id == id).Include(x => x.Stops).FirstOrDefault();
                 }
                 catch (System.Exception e)
                 {

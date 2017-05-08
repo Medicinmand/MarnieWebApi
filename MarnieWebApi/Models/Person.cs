@@ -16,7 +16,7 @@ namespace MarnieWebApi.Models
             PersonDates = new HashSet<PersonDate>();
         }
 
-        public Person(int authId, string name, DateTime birthday, string gender, string profilePicture)
+        public Person(string authId, string name, DateTime birthday, string gender, string profilePicture)
         {
             AuthId = authId;
             Name = name;
@@ -29,7 +29,7 @@ namespace MarnieWebApi.Models
 
         public int Id { get; set; }
 
-        public int AuthId { get; set; }
+        public string AuthId { get; set; }
 
         [Required]
         [StringLength(50)]

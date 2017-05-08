@@ -22,13 +22,13 @@ namespace MarnieWebApi.Controllers
         }
 
         // POST: api/Person
-        public void Post([FromBody]Person person)
+        public void Post(Person person)
         {
             db.Insert(person);
         }
 
         // PUT: api/Person/5
-        public void Put([FromBody]Person person)
+        public void Put(Person person)
         {
             db.Update(person);
         }

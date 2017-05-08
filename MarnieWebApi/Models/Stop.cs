@@ -6,21 +6,6 @@ namespace MarnieWebApi.Models
     [Table("Stop")]
     public partial class Stop
     {
-        public Stop(int routeId, int stationId, TimeSpan arrivalTime, TimeSpan departureTime)
-        {
-            RouteId = routeId;
-            StationId = stationId;
-            ArrivalTime = arrivalTime;
-            DepartureTime = departureTime;
-        }
-
-        public Stop(int stationId, TimeSpan arrivalTime, TimeSpan departureTime)
-        {
-            StationId = stationId;
-            ArrivalTime = arrivalTime;
-            DepartureTime = departureTime;
-        }
-
         public Stop()
         {
 

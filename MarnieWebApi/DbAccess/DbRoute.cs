@@ -71,6 +71,29 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
+        public ICollection<Route> FindRoute(Route route)
+        {
+            List<Route> routes = new List<Route>();
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    var tempList = db.Routes.Include(p => p.Stops).ToList();
+                    foreach (var item in tempList)
+                    {
+                        //TODO
+                    }
+
+                    return routes;
+                }
+                catch (System.Exception e)
+                {
+
+                    throw e;
+                }
+            }
+        }
+
         public Route GetWithRelations(int id)
         {
             using (var db = new MyDbContext())

@@ -22,7 +22,7 @@ namespace MarnieWebApi.Controllers
         }
 
         // POST: api/Route
-        public void Post([FromBody]Route route)
+        public void Post(Route route)
         {
             db.Insert(route);
         }

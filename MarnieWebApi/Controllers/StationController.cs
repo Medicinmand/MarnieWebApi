@@ -23,7 +23,7 @@ namespace MarnieWebApi.Controllers
 
 
         // GET: api/Station
-        [Route("api/Station/{latitude}/{longitude}")]
+       
         public Station GetNearestStation(double latitude , double longitude)
         {
             return db.GetNearestStation(latitude, longitude);

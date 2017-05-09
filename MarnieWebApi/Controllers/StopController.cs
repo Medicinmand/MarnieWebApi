@@ -7,7 +7,7 @@ namespace MarnieWebApi.Controllers
 {
     public class StopController : ApiController
     {
-        DbStop db = new DbStop();
+        private DbStop db = new DbStop();
 
         // GET: api/Stop
         public IEnumerable<Stop> Get()

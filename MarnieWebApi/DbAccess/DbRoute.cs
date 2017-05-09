@@ -1,4 +1,5 @@
-﻿using MarnieWebApi.Models;
+﻿using System;
+using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Routes.Include(x => x.Stops).ToList();
+                    return db.Routes.Include(x => x.Stops.Select(y => y.Station)).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -71,7 +72,7 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Route> FindRoute(Route route)
+        public ICollection<Route> FindRoute(string from, string to, DateTime startTime)
         {
             List<Route> routes = new List<Route>();
             using (var db = new MyDbContext())
@@ -81,7 +82,7 @@ namespace MarnieWebApi.DbAccess
                     var tempList = db.Routes.Include(x => x.Stops).ToList();
                     foreach (var item in tempList)
                     {
-                        //TODO
+                        var station1 = item.Stops.Select(stop => stop.Station.Name.Equals(from));
                     }
 
                     return routes;

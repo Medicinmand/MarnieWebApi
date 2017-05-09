@@ -7,7 +7,7 @@ namespace MarnieWebApi.Controllers
 {
     public class DateController : ApiController
     {
-        DbDate db = new DbDate();
+        private DbDate db = new DbDate();
 
         // GET: api/Date
         public IEnumerable<Date> Get()

@@ -7,7 +7,7 @@ namespace MarnieWebApi.Controllers
 {
     public class StationController : ApiController
     {
-        DbStation db = new DbStation();
+        private DbStation db = new DbStation();
 
         // GET: api/Station
         public IEnumerable<Station> Get()

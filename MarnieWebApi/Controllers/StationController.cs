@@ -21,6 +21,13 @@ namespace MarnieWebApi.Controllers
             return db.GetWithRelations(id);
         }
 
+
+        // GET: api/NearestStation
+        public Station Get(double latitude , double longitude)
+        {
+            return db.GetNearestStation(latitude, longitude);
+        }
+
         // POST: api/Station
         public void Post([FromBody]Station station)
         {

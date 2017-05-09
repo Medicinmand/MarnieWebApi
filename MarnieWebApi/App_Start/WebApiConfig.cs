@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using MarnieWebApi.DbAccess;
 
 namespace MarnieWebApi
 {
@@ -10,6 +11,9 @@ namespace MarnieWebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            //var stdb = new DbStation();
+            //var result = stdb.GetNearestStation(56.3275, 10.047235);
+
             //generate some data
             new GenerateData();
 

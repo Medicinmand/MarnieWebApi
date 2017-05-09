@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System;
+using System.Device.Location;
 
 namespace MarnieWebApi.DbAccess
 {
@@ -23,6 +25,25 @@ namespace MarnieWebApi.DbAccess
                     throw e;
                 }
             }
+        }
+
+        public Station GetNearestStation(double latitude, double longitude)
+        {
+            var personLocation = new GeoCoordinate(latitude, longitude);
+            var stationList = GetAll() as IEnumerable<Station>;
+            var geo_station = new Dictionary<Station, double>();
+
+            foreach (Station st in stationList)
+            {
+                var lat = st.Latitude;
+                var lon = st.Longitude;
+                var stGeo = new GeoCoordinate(lat, lon);//create GeoCoordinate object for each station
+                var distance = personLocation.GetDistanceTo(stGeo);// calculate distanse from given koordinates to each station
+                geo_station.Add(st, distance); //save station and calculated distance to it in dictionary as key-value pair
+
+            }
+            // return geo_station.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;//find the station with minimal distatce in dictionary
+            return geo_station.OrderBy(k => k.Value).FirstOrDefault().Key;
         }
 
         public Station Get(int id)
@@ -57,7 +78,7 @@ namespace MarnieWebApi.DbAccess
 
         public ICollection<Station> GetAllWithRelations()
         {
-            return GetAll();           
+            return GetAll();
         }
 
         public Station GetWithRelations(int id)

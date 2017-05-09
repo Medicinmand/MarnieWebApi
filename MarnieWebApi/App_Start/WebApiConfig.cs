@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marnie.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -12,6 +13,9 @@ namespace MarnieWebApi
         {
             //var stdb = new DbStation();
             //var result = stdb.GetNearestStation(56.3275, 10.047235);
+
+            //generate some data
+            //new GenerateData();
 
             // Web API configuration and services
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

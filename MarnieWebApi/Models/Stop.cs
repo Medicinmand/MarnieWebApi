@@ -11,6 +11,13 @@ namespace MarnieWebApi.Models
 
         }
 
+        public Stop(int stationId, TimeSpan arrivalTime, TimeSpan departureTime)
+        {
+            StationId = stationId;
+            ArrivalTime = arrivalTime;
+            DepartureTime = departureTime;
+        }
+
         public int Id { get; set; }
 
         public int RouteId { get; set; }

@@ -110,6 +110,7 @@
     <Compile Include="DbAccess\DbRoute.cs" />
     <Compile Include="DbAccess\DbStation.cs" />
     <Compile Include="DbAccess\DbStop.cs" />
+    <Compile Include="DbAccess\GenerateData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

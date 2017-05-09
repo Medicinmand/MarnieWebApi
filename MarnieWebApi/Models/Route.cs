@@ -13,6 +13,12 @@ namespace MarnieWebApi.Models
             
         }
 
+        public Route(string name, ICollection<Stop> stops)
+        {
+            Name = name;
+            Stops = stops;
+        }
+
         public int Id { get; set; }
 
         [Required]

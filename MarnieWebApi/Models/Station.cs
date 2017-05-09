@@ -12,6 +12,13 @@ namespace MarnieWebApi.Models
             
         }
 
+        public Station(string name, double latitude, double longitude)
+        {
+            Name = name;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+
         public int Id { get; set; }
 
         [Required]

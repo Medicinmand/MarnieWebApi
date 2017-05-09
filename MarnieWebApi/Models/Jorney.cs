@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace MarnieWebApi.Models
 {
     using System;
@@ -7,6 +9,22 @@ namespace MarnieWebApi.Models
     [Table("Jorney")]
     public partial class Jorney
     {
+        public Jorney(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status)
+        {
+            RouteId = routeId;
+            PersonId = personId;
+            StartLocation = startLocation;
+            StartTime = startTime;
+            Destination = destination;
+            EndTime = endTime;
+            Status = status;
+        }
+
+        public Jorney()
+        {
+                
+        }
+
         public int Id { get; set; }
 
         public int RouteId { get; set; }
@@ -25,6 +43,7 @@ namespace MarnieWebApi.Models
 
         public DateTime EndTime { get; set; }
 
+        //0 = active, 1 = partlyBooked, 2 = no more dates.
         public int Status { get; set; }
 
         public Person Person { get; set; }

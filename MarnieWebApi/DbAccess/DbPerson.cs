@@ -65,9 +65,23 @@ namespace MarnieWebApi.DbAccess
                 }
                 catch (System.Exception e)
                 {
-
                     throw e;
                 }                
+            }
+        }
+
+        public ICollection<Person> GetByName(string name, string name2)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Persons.Where(x => x.Name.Equals(name) | x.Name.Equals(name2)).Include(x => x.Dates).Include(x => x.Jorneys).ToList();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
             }
         }
 

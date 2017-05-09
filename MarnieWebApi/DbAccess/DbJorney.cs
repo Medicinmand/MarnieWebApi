@@ -70,6 +70,21 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
+        public ICollection<Jorney> GetDates(Jorney matchJorney)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Jorneys.Where(jor => jor.RouteId == matchJorney.RouteId).Include(x => x.Person).Include(x => x.Route).ToList();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public ICollection<Jorney> FindDates(Jorney jorney)
         {
             List<Jorney> jorneyList = new List<Jorney>();

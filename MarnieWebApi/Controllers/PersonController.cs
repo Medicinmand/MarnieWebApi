@@ -7,7 +7,7 @@ namespace MarnieWebApi.Controllers
 {
     public class PersonController : ApiController
     {
-        DbPerson db = new DbPerson();
+        private DbPerson db = new DbPerson();
 
         // GET: api/Person
         public IEnumerable<Person> Get()
@@ -19,6 +19,12 @@ namespace MarnieWebApi.Controllers
         public Person Get(int id)
         {
             return db.GetWithRelations(id);
+        }
+
+        //testing how to serach DB.
+        public IEnumerable<Person> Get(string name, string name2)
+        {
+            return db.GetByName(name, name2);
         }
 
         // POST: api/Person

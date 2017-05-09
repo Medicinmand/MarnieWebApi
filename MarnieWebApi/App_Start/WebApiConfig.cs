@@ -11,7 +11,7 @@ namespace MarnieWebApi
         public static void Register(HttpConfiguration config)
         {
             //generate some data
-            //new GenerateData();
+            new GenerateData();
 
             // Web API configuration and services
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

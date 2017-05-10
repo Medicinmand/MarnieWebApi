@@ -1,4 +1,5 @@
-﻿using MarnieWebApi.DbAccess;
+﻿using System;
+using MarnieWebApi.DbAccess;
 using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -31,6 +32,15 @@ namespace MarnieWebApi.Controllers
         public IEnumerable<Person> Get(string name, string name2)
         {
             return db.GetByName(name, name2);
+        }
+
+        //GEt: api/Person returs a list of persons by routId and travel time
+        public List<Person> GetPersonsByRouteIdAndTime(int routeId, DateTime start, DateTime stop)
+        {
+            var jc = new JorneyController();
+            var jorneyList = jc.GetJorneysByRouteAndTime(routeId, start, stop);
+
+            return db.GetPersonsByRouteIdAndTime(jorneyList);
         }
 
         // POST: api/Person

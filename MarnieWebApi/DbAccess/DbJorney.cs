@@ -1,7 +1,9 @@
-﻿using MarnieWebApi.Models;
+﻿using System;
+using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MarnieWebApi.DbAccess
 {
@@ -116,6 +118,30 @@ namespace MarnieWebApi.DbAccess
                     throw e;
                 }
             }
+        }
+
+        public List <Jorney> GetJorneysByRouteAndTime(int routeId, DateTime myStart, DateTime myStop)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId).ToList();
+                    return jorneys.Where(j => IsBetween(myStart, myStop, j.StartTime, j.EndTime)).ToList();
+                    
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+       
+
+        private static bool IsBetween(DateTime myStart, DateTime myStop, DateTime start, DateTime end)
+        {
+            return (end >= myStart && start <= myStop && end != myStart)|| start == myStart || end == myStop;
         }
 
         public void Insert(Jorney item)

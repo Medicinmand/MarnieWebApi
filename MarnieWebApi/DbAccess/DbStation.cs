@@ -20,7 +20,7 @@ namespace MarnieWebApi.DbAccess
                     db.Stations.Remove(station);
                     db.SaveChanges();
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
@@ -28,7 +28,7 @@ namespace MarnieWebApi.DbAccess
         }
 
         public Station GetNearestStation(double latitude, double longitude)
-        {
+        {            
             var personLocation = new GeoCoordinate(latitude, longitude);
             var stationList = GetAll() as IEnumerable<Station>;
             var geo_station = new Dictionary<Station, double>();

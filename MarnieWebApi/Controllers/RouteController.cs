@@ -3,6 +3,8 @@ using MarnieWebApi.DbAccess;
 using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Net.Http;
+using System.Net;
 
 namespace MarnieWebApi.Controllers
 {
@@ -16,9 +18,17 @@ namespace MarnieWebApi.Controllers
             return db.GetAllWithRelations();
         }
 
+        //GET: api/Route?...
         public IEnumerable<Route> Get(string from, string to, DateTime startTime)
         {
-            return db.FindRoute(from, to, startTime);
+            try
+            {
+                return db.FindRoutes(from, to, startTime);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         // GET: api/Route/5

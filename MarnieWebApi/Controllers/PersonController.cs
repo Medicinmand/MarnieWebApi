@@ -22,9 +22,9 @@ namespace MarnieWebApi.Controllers
         }
 
         //testing how to serach DB.
-        public IEnumerable<Person> Get(string name, string name2)
+        public Person Get(string auth)
         {
-            return db.GetByName(name, name2);
+            return db.GetByAuth(auth);
         }
 
         // POST: api/Person

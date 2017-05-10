@@ -70,13 +70,14 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Person> GetByName(string name, string name2)
+        public Person GetByAuth(string auth)
         {
             using (var db = new MyDbContext())
             {
                 try
-                {
-                    return db.Persons.Where(x => x.Name.Equals(name) | x.Name.Equals(name2)).Include(x => x.Dates).Include(x => x.Jorneys).ToList();
+                {                    
+                    var list = db.Persons.Where(x => x.AuthId.Equals(auth)).Include(x => x.Dates).Include(x => x.Jorneys).ToList();
+                    return list[0];
                 }
                 catch (System.Exception e)
                 {

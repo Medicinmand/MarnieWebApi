@@ -3,6 +3,9 @@ using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace MarnieWebApi.DbAccess
 {
@@ -72,19 +75,57 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Route> FindRoute(string from, string to, DateTime startTime)
+        public ICollection<Route> FindRoutes(string from, string to, DateTime startTime)
         {
             List<Route> routes = new List<Route>();
+            int RouteCounter = 0;
+            
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    var tempList = db.Routes.Include(x => x.Stops).ToList();
-                    foreach (var item in tempList)
+                    var tempList = db.Routes.Include(x => x.Stops.Select(y => y.Station)).ToList();                
+                    
+                    
+                    foreach (var route in tempList)
                     {
-                        var station1 = item.Stops.Select(stop => stop.Station.Name.Equals(from));
+                        Stop stopFrom = null;
+                        Stop stopTo = null;
+                        foreach (var stop in route.Stops)
+                        {
+                            if (stop.Station.Name.Equals(from)) stopFrom = stop;
+                            if (stop.Station.Name.Equals(to)) stopTo = stop;
+                        }                        
+                        
+                        if (stopFrom !=null && stopTo != null)
+                        {
+                            if (stopFrom.ArrivalTime < stopTo.ArrivalTime)
+                            {
+                                RouteCounter++;
+                                if (stopFrom.DepartureTime >= startTime.TimeOfDay)
+                                {
+                                    routes.Add(route);
+                                }
+                            }
+                        }
+                    }
+                    if(RouteCounter == 0)
+                    {
+                        throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest)
+                        {
+                            Content = new StringContent("There is no Route Between these stations"),
+                            ReasonPhrase = "BadRequest"
+                        });
                     }
 
+                    if(routes.Count == 0)
+                    {
+                        throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest)
+                        {
+                            Content = new StringContent("No more trains that day"),
+                            ReasonPhrase = "BadRequest"
+                        });
+                    }
                     return routes;
                 }
                 catch (System.Exception e)

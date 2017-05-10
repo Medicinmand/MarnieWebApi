@@ -76,6 +76,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
+                    //TODO get match where people get on and off
                     return db.Jorneys.Where(jor => jor.RouteId == matchJorney.RouteId).Include(x => x.Person).Include(x => x.Route).ToList();
                 }
                 catch (System.Exception e)

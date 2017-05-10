@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace MarnieWebApi.DbAccess
 {
@@ -22,6 +23,21 @@ namespace MarnieWebApi.DbAccess
                 {
                     throw e;
                 }                
+            }
+        }
+
+        public Person GetByAuthId(string id)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Persons.FirstOrDefault(x => x.AuthId == id);
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
             }
         }
 

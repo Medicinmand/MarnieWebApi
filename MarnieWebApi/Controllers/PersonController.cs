@@ -21,6 +21,12 @@ namespace MarnieWebApi.Controllers
             return db.GetWithRelations(id);
         }
 
+        // GET: api/Person/5
+        public Person GetByAuthId(string authId)
+        {
+            return db.GetByAuthId(authId);
+        }
+
         //testing how to serach DB.
         public IEnumerable<Person> Get(string name, string name2)
         {

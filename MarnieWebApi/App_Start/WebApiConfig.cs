@@ -15,7 +15,7 @@ namespace MarnieWebApi
             //var result = stdb.GetNearestStation(56.3275, 10.047235);
 
             //generate some data
-            new GenerateData();
+            //new GenerateData();
 
             // Web API configuration and services
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

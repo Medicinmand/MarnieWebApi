@@ -1,4 +1,5 @@
-﻿using MarnieWebApi.DbAccess;
+﻿using System;
+using MarnieWebApi.DbAccess;
 using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -18,6 +19,11 @@ namespace MarnieWebApi.Controllers
         public Jorney Get(int id)
         {
             return db.GetWithRelations(id);
+        }
+        // GET: api/Jorney/
+        public List<Jorney> GetJorneysByRouteAndTime(int routeId, DateTime myStart, DateTime myStop)
+        {
+            return db.GetJorneysByRouteAndTime(routeId, myStart, myStop);
         }
 
         // POST: api/Jorney

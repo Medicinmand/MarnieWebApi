@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MarnieWebApi.DbAccess
 {
@@ -23,6 +25,31 @@ namespace MarnieWebApi.DbAccess
                     throw e;
                 }                
             }
+        }
+
+        public Person GetByAuthId(string id)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Persons.FirstOrDefault(x => x.AuthId == id);
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public List<Person> GetPersonsByRouteIdAndTime(List<Jorney> jorneys)
+        {
+            var persons = new List<Person>();
+            using (var db = new MyDbContext())
+            {
+                persons.AddRange(jorneys.Select(j => j.PersonId).Select(Get));
+            }
+            return persons;
         }
 
         public Person Get(int id)

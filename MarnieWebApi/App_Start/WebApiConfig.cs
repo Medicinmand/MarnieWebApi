@@ -27,6 +27,11 @@ namespace MarnieWebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //config.Routes.MapHttpRoute(
+            //    name: "GetNearestStation",
+            //    routeTemplate: "api/{controller}/{latitude}/{longitude}"
+            //);
         }
     }
 }

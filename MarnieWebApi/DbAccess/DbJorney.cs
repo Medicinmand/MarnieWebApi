@@ -72,40 +72,6 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Jorney> GetDates(Jorney matchJorney)
-        {
-            using (var db = new MyDbContext())
-            {
-                try
-                {
-                    //TODO get match where people get on and off
-                    return db.Jorneys.Where(jor => jor.RouteId == matchJorney.RouteId).Include(x => x.Person).Include(x => x.Route).ToList();
-                }
-                catch (System.Exception e)
-                {
-                    throw e;
-                }
-            }
-        }
-
-        public ICollection<Jorney> FindDates(Jorney jorney)
-        {
-            List<Jorney> jorneyList = new List<Jorney>();
-            using (var db = new MyDbContext())
-            {
-                try
-                {
-                    var tempList = db.Jorneys.Include(x => x.Person).Include(x => x.Route).ToList();
-                    //TODO
-                    return jorneyList;
-                }
-                catch (System.Exception e)
-                {
-                    throw e;
-                }
-            }
-        }
-
         public Jorney GetWithRelations(int id)
         {
             using (var db = new MyDbContext())
@@ -127,7 +93,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId).ToList();
+                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId).Include(x => x.Person).Include(x => x.Route).ToList();
                     return jorneys.Where(j => IsBetween(myStart, myStop, j.StartTime, j.EndTime)).ToList();
                     
                 }

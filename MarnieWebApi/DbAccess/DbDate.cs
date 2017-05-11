@@ -1,4 +1,5 @@
-﻿using MarnieWebApi.Models;
+﻿using System;
+using MarnieWebApi.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -40,13 +41,14 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Date> GetMyDates(int PersonId)
+        public ICollection<Date> GetMyDates(int personId)
         {
             using (var db = new MyDbContext())
             {
                 try
-                {                    
-                    return db.Dates.Include(x => x.Person1Id == PersonId | x.Person2Id == PersonId).Include(x => x.Person1).Include(x => x.Person2).Include(x => x.Route).ToList();
+                {
+                    return db.Dates.Where(date => (date.Person1Id == personId | date.Person2Id == personId))
+                            .Include(x => x.Person1).Include(x => x.Person2).Include(x => x.Route).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -70,14 +72,24 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public void Insert(Date item)
+        public void Insert(Date inputDate)
         {
             using (var db = new MyDbContext())
             {
+                var myDate = db.Dates.Single(date => (date.Person2Id == inputDate.Person1Id && date.RouteId == inputDate.RouteId));
                 try
                 {
-                    db.Dates.Add(item);
-                    db.SaveChanges();
+                    if (myDate != null)
+                    {
+                        myDate.StatusP2 = 1;
+                        myDate.DateStatus = 1;
+                        Update(myDate);
+                    }
+                    else
+                    {
+                        db.Dates.Add(inputDate);
+                        db.SaveChanges();
+                    }
                 }
                 catch (System.Exception e)
                 {

@@ -20,7 +20,13 @@ namespace MarnieWebApi.Controllers
         {
             return db.GetWithRelations(id);
         }
-        
+
+        // GET: api/Date?
+        public IEnumerable<Date> GetMyDates(int personId)
+        {
+            return db.GetMyDates(personId);
+        }
+
         // POST: api/Date
         public void Post([FromBody]Date date)
         {

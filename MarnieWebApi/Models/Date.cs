@@ -37,10 +37,13 @@ namespace MarnieWebApi.Models
 
         public Person Person2 { get; set; }
 
+        // status: 0= pending, 1 = confirmed, 2 = declined
         public int StatusP1 { get; set; }
 
+        // status: 0= pending, 1 = confirmed, 2 = declined
         public int StatusP2 { get; set; }
 
+        // status: 0= pending, 1 = confirmed, 2 = declined
         public int DateStatus { get; set; }
 
         public Route Route { get; set; }

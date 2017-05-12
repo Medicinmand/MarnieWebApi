@@ -113,6 +113,9 @@ namespace MarnieWebApi.DbAccess
 
         public void Insert(Jorney myJorney)
         {
+            var utc = myJorney.StartTime.ToUniversalTime();
+            var local = myJorney.StartTime.ToLocalTime(); 
+
             myJorney.Route = null;
             myJorney.Person = null;
             using (var db = new MyDbContext())

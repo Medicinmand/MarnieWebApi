@@ -22,7 +22,7 @@ namespace MarnieWebApi.Models
 
         public Jorney()
         {
-                
+    
         }
 
         public int Id { get; set; }

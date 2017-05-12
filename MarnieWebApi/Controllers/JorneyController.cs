@@ -28,7 +28,7 @@ namespace MarnieWebApi.Controllers
 
         // POST: api/Jorney
         public void Post([FromBody]Jorney jorney)
-        {
+        {            
             db.Insert(jorney);
         }
 

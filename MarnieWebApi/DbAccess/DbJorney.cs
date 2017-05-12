@@ -111,13 +111,15 @@ namespace MarnieWebApi.DbAccess
             return (end >= myStart && start <= myStop && end != myStart)|| start == myStart || end == myStop;
         }
 
-        public void Insert(Jorney item)
+        public void Insert(Jorney myJorney)
         {
+            myJorney.Route = null;
+            myJorney.Person = null;
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    db.Jorneys.Add(item);
+                    db.Jorneys.Add(myJorney);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)

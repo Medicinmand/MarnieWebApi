@@ -87,13 +87,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public List <Jorney> GetJorneysByRouteAndTime(int routeId, DateTime myStart, DateTime myStop)
+        public List <Jorney> GetJorneysByRouteAndTime(int routeId,int personId, DateTime myStart, DateTime myStop)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId).Include(x => x.Person).Include(x => x.Route).ToList();
+                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId && x.PersonId != personId).Include(x => x.Person).Include(x => x.Route).ToList();
                     return jorneys.Where(j => IsBetween(myStart, myStop, j.StartTime, j.EndTime)).ToList();
                     
                 }

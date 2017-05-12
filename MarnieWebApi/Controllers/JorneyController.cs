@@ -21,9 +21,9 @@ namespace MarnieWebApi.Controllers
             return db.GetWithRelations(id);
         }
         // GET: api/Jorney/
-        public List<Jorney> GetJorneysByRouteAndTime(int routeId, DateTime myStart, DateTime myStop)
+        public List<Jorney> GetJorneysByRouteAndTime(int routeId,int personId, DateTime myStart, DateTime myStop)
         {
-            return db.GetJorneysByRouteAndTime(routeId, myStart, myStop);
+            return db.GetJorneysByRouteAndTime(routeId, personId, myStart, myStop);
         }
 
         // POST: api/Jorney

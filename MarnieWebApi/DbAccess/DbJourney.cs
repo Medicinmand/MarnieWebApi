@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace MarnieWebApi.DbAccess
 {
-    public class DbJorney : DBInterface<Jorney>
+    public class DbJourney : DBInterface<Journey>
     {
         public void Delete(int id)
         {
@@ -15,9 +15,9 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var jorney = new Jorney { Id = id };
-                    db.Jorneys.Attach(jorney);
-                    db.Jorneys.Remove(jorney);
+                    var journey = new Journey { Id = id };
+                    db.Journeys.Attach(journey);
+                    db.Journeys.Remove(journey);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
@@ -27,13 +27,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public Jorney Get(int id)
+        public Journey Get(int id)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Jorneys.Find(id);
+                    return db.Journeys.Find(id);
                 }
                 catch (System.Exception e)
                 {
@@ -42,13 +42,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Jorney> GetAll()
+        public ICollection<Journey> GetAll()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Jorneys.ToList();
+                    return db.Journeys.ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -57,13 +57,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public ICollection<Jorney> GetAllWithRelations()
+        public ICollection<Journey> GetAllWithRelations()
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Jorneys.Include(x => x.Person).Include(x => x.Route).ToList();
+                    return db.Journeys.Include(x => x.Person).Include(x => x.Route).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -72,13 +72,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public Jorney GetWithRelations(int id)
+        public Journey GetWithRelations(int id)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    return db.Jorneys.Where(x => x.Id == id).Include(x => x.Person).Include(x => x.Route).FirstOrDefault();
+                    return db.Journeys.Where(x => x.Id == id).Include(x => x.Person).Include(x => x.Route).FirstOrDefault();
                 }
                 catch (System.Exception e)
                 {
@@ -87,14 +87,14 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public List <Jorney> GetJorneysByRouteAndTime(int routeId,int personId, DateTime myStart, DateTime myStop)
+        public List <Journey> GetJourneysByRouteAndTime(int routeId,int personId, DateTime myStart, DateTime myStop)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    var jorneys = db.Jorneys.Where(x => x.RouteId == routeId && x.PersonId != personId).Include(x => x.Person).Include(x => x.Route).ToList();
-                    return jorneys.Where(j => IsBetween(myStart, myStop, j.StartTime, j.EndTime)).ToList();
+                    var journeys = db.Journeys.Where(x => x.RouteId == routeId && x.PersonId != personId).Include(x => x.Person).Include(x => x.Route).ToList();
+                    return journeys.Where(j => IsBetween(myStart, myStop, j.StartTime, j.EndTime)).ToList();
                     
                 }
                 catch (System.Exception e)
@@ -111,18 +111,18 @@ namespace MarnieWebApi.DbAccess
             return (end >= myStart && start <= myStop && end != myStart)|| start == myStart || end == myStop;
         }
 
-        public void Insert(Jorney myJorney)
+        public void Insert(Journey myJourney)
         {
-            var utc = myJorney.StartTime.ToUniversalTime();
-            var local = myJorney.StartTime.ToLocalTime(); 
+            var utc = myJourney.StartTime.ToUniversalTime();
+            var local = myJourney.StartTime.ToLocalTime(); 
 
-            myJorney.Route = null;
-            myJorney.Person = null;
+            myJourney.Route = null;
+            myJourney.Person = null;
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    db.Jorneys.Add(myJorney);
+                    db.Journeys.Add(myJourney);
                     db.SaveChanges();
                 }
                 catch (System.Exception e)
@@ -133,7 +133,7 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public void Update(Jorney item)
+        public void Update(Journey item)
         {
             using (var db = new MyDbContext())
             {

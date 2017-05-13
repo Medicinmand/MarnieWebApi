@@ -42,12 +42,12 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public List<Person> GetPersonsByRouteIdAndTime(List<Jorney> jorneys)
+        public List<Person> GetPersonsByRouteIdAndTime(List<Journey> journeys)
         {
             var persons = new List<Person>();
             using (var db = new MyDbContext())
             {
-                persons.AddRange(jorneys.Select(j => j.PersonId).Select(Get));
+                persons.AddRange(journeys.Select(j => j.PersonId).Select(Get));
             }
             return persons;
         }
@@ -88,7 +88,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Persons.Include(x => x.Dates).Include(x => x.Jorneys).ToList();
+                    return db.Persons.Include(x => x.Dates).Include(x => x.Journeys).ToList();
                 }
                 catch (System.Exception e)
                 {
@@ -103,7 +103,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {                    
-                    var list = db.Persons.Where(x => x.AuthId.Equals(auth)).Include(x => x.Dates).Include(x => x.Jorneys).ToList();
+                    var list = db.Persons.Where(x => x.AuthId.Equals(auth)).Include(x => x.Dates).Include(x => x.Journeys).ToList();
                     return list[0];
                 }
                 catch (System.Exception e)
@@ -119,7 +119,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Persons.Where(x => x.Id == id).Include(x => x.Dates).Include(x => x.Jorneys).FirstOrDefault();
+                    return db.Persons.Where(x => x.Id == id).Include(x => x.Dates).Include(x => x.Journeys).FirstOrDefault();
                 }
                 catch (System.Exception e)
                 {

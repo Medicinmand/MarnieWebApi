@@ -34,7 +34,7 @@ namespace MarnieWebApi.Models
         public string ProfilePicture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Jorney> Jorneys { get; set; } = new List<Jorney>();
+        public ICollection<Journey> Journeys { get; set; } = new List<Journey>();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ICollection<Date> Dates { get; set; } = new List<Date>();

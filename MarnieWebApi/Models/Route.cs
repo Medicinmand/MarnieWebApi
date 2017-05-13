@@ -31,8 +31,10 @@ namespace MarnieWebApi.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
-                
+
+        [NotMapped]
         public Stop StopFrom { get; set; }
+        [NotMapped]
         public Stop StopTo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

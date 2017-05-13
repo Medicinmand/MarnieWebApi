@@ -84,8 +84,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    var tempList = db.Routes.Include(x => x.Stops.Select(y => y.Station)).ToList();                
-                    
+                    var tempList = db.Routes.Include(x => x.Stops.Select(y => y.Station)).ToList(); 
                     
                     foreach (var route in tempList)
                     {
@@ -103,7 +102,9 @@ namespace MarnieWebApi.DbAccess
                             {
                                 RouteCounter++;
                                 if (stopFrom.DepartureTime >= startTime.TimeOfDay)
-                                {
+                                {                                    
+                                    route.StopFrom = stopFrom;
+                                    route.StopTo = stopTo;
                                     routes.Add(route);
                                 }
                             }

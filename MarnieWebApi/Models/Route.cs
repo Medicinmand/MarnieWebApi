@@ -19,11 +19,21 @@ namespace MarnieWebApi.Models
             Stops = stops;
         }
 
+        public Route(int id, string name, ICollection<Stop> stops)
+        {
+            Id = id;
+            Name = name;
+            Stops = stops;
+        }
+
         public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+                
+        public Stop StopFrom { get; set; }
+        public Stop StopTo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ICollection<Stop> Stops { get; set; } = new List<Stop>();

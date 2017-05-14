@@ -87,6 +87,21 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
+        public List<Journey> GetMyJourneyList(int personId)
+        {
+            using (var db = new MyDbContext())
+            {
+                try
+                {
+                    return db.Journeys.Where(x => x.PersonId == personId).Include(x => x.Person).ToList();
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public List <Journey> GetJourneysByRouteAndTime(int routeId,int personId, DateTime myStart, DateTime myStop)
         {
             using (var db = new MyDbContext())

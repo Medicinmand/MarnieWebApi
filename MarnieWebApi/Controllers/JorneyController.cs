@@ -20,16 +20,17 @@ namespace MarnieWebApi.Controllers
         {
             return db.GetWithRelations(id);
         }
-        // GET: api/Jorney/
-        public List<Jorney> GetJorneysByRouteAndTime(int routeId, DateTime myStart, DateTime myStop)
-        {
-            return db.GetJorneysByRouteAndTime(routeId, myStart, myStop);
-        }
+//        // GET: api/Jorney/
+//        public List<Jorney> GetJorneysByRouteAndTime(Jorney myJorney)
+//        {
+//            return db.GetJorneysByRouteAndTime(myJorney);
+//        }
 
         // POST: api/Jorney
-        public void Post([FromBody]Jorney jorney)
+        public List<Jorney> Post(Jorney myJorney)
         {
-            db.Insert(jorney);
+            db.Insert(myJorney);
+            return db.GetJorneysByRouteAndTime(myJorney);
         }
 
         // PUT: api/Jorney/5

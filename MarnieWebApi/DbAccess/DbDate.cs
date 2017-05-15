@@ -76,7 +76,7 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                var myDate = db.Dates.Single(date => (date.Person2Id == inputDate.Person1Id && date.RouteId == inputDate.RouteId));
+                var myDate = db.Dates.SingleOrDefault(date => (date.Person2Id == inputDate.Person1Id && date.RouteId == inputDate.RouteId));
                 try
                 {
                     if (myDate != null)

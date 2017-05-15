@@ -10,7 +10,7 @@ namespace MarnieWebApi.Models
         }
 
         public virtual DbSet<Date> Dates { get; set; }
-        public virtual DbSet<Jorney> Jorneys { get; set; }
+        public virtual DbSet<Journey> Journeys { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Station> Stations { get; set; }
@@ -31,7 +31,7 @@ namespace MarnieWebApi.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
-                .HasMany(e => e.Jorneys)
+                .HasMany(e => e.Journeys)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
 

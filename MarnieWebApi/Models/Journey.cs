@@ -6,10 +6,10 @@ namespace MarnieWebApi.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Jorney")]
-    public partial class Jorney
+    [Table("Journey")]
+    public partial class Journey
     {
-        public Jorney(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status)
+        public Journey(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status)
         {
             RouteId = routeId;
             PersonId = personId;
@@ -20,9 +20,9 @@ namespace MarnieWebApi.Models
             Status = status;
         }
 
-        public Jorney()
+        public Journey()
         {
-                
+    
         }
 
         public int Id { get; set; }

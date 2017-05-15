@@ -35,13 +35,13 @@ namespace MarnieWebApi.Controllers
         }
 
         //GEt: api/Person returs a list of persons by routId and travel time
-//        public List<Person> GetPersonsByRouteIdAndTime(Jorney myJorney)
-//        {
-//            var jc = new JorneyController();
-//            var jorneyList = jc.GetJorneysByRouteAndTime(myJorney);
-//
-//            return db.GetPersonsByRouteIdAndTime(jorneyList);
-//        }
+        public List<Person> Get(int routeId, int personId, DateTime start, DateTime stop)
+        {
+            var jc = new JourneyController();
+            var journeyList = jc.GetJourneysByRouteAndTime(routeId, personId, start, stop);
+
+            return db.GetPersonsByRouteIdAndTime(journeyList);
+        }
 
         // POST: api/Person
         public void Post(Person person)

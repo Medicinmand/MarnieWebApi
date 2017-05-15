@@ -17,7 +17,7 @@
     <AssemblyName>MarnieWebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44306</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -98,14 +98,14 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DateController.cs" />
-    <Compile Include="Controllers\JorneyController.cs" />
+    <Compile Include="Controllers\JourneyController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\StopController.cs" />
     <Compile Include="DbAccess\DbDate.cs" />
     <Compile Include="DbAccess\DBInterface.cs" />
-    <Compile Include="DbAccess\DbJorney.cs" />
+    <Compile Include="DbAccess\DbJourney.cs" />
     <Compile Include="DbAccess\DbPerson.cs" />
     <Compile Include="DbAccess\DbRoute.cs" />
     <Compile Include="DbAccess\DbStation.cs" />
@@ -115,7 +115,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Date.cs" />
-    <Compile Include="Models\Jorney.cs" />
+    <Compile Include="Models\Journey.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Route.cs" />

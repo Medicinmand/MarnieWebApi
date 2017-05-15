@@ -12,7 +12,7 @@ namespace Marnie.Model
         public GenerateData()
         {
             var dbRoute = new DbRoute();
-            var dbJorney = new DbJorney();
+            var dbJourney = new DbJourney();
 
             Station s1 = (new Station("Aalborg", 57.0430039, 9.91709930000002));
             Station s2 = (new Station("Århus", 56.150356, 10.204572));
@@ -79,18 +79,18 @@ namespace Marnie.Model
             var loc2Time4 = parseTime("13:58");
             var loc3Time4 = parseTime("16:29");
 
-            var j1 = new Jorney(22, 7, loc1, loc1Time1, loc2, loc2Time1, 0);
-            var j2 = new Jorney(22, 9, loc1, loc1Time1, loc3, loc3Time1, 0);
-            var j3 = new Jorney(22, 13, loc1, loc1Time1, loc3, loc3Time1, 2);
-            var j4 = new Jorney(23, 20, loc2, loc2Time2, loc3, loc3Time2, 0);
-            var j5 = new Jorney(22, 22, loc2, loc2Time1, loc3, loc3Time1, 0);
-            var j6 = new Jorney(24, 21 , loc1, loc1Time3, loc3, loc3Time3, 0);
+            var j1 = new Journey(22, 7, loc1, loc1Time1, loc2, loc2Time1, 0);
+            var j2 = new Journey(22, 9, loc1, loc1Time1, loc3, loc3Time1, 0);
+            var j3 = new Journey(22, 13, loc1, loc1Time1, loc3, loc3Time1, 2);
+            var j4 = new Journey(23, 20, loc2, loc2Time2, loc3, loc3Time2, 0);
+            var j5 = new Journey(22, 22, loc2, loc2Time1, loc3, loc3Time1, 0);
+            var j6 = new Journey(24, 21 , loc1, loc1Time3, loc3, loc3Time3, 0);
 
-            List<Jorney> jList = new List<Jorney>() {j1, j2, j3, j4, j5, j6};
+            List<Journey> jList = new List<Journey>() {j1, j2, j3, j4, j5, j6};
 
             for (int i = 0; i < 6; i++)
             {
-                dbJorney.Insert(jList[i]);
+                dbJourney.Insert(jList[i]);
             }
 
             //dbRoute.Insert(R1);

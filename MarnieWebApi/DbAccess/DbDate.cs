@@ -77,6 +77,7 @@ namespace MarnieWebApi.DbAccess
             using (var db = new MyDbContext())
             {
                 var myDate = db.Dates.SingleOrDefault(date => (date.Person2Id == inputDate.Person1Id && date.Person1Id == inputDate.Person2Id && date.RouteId == inputDate.RouteId && date.StartTime.Equals(inputDate.StartTime)));
+                var dateAlreadyInDB = db.Dates.SingleOrDefault(date => (date.Person1Id == inputDate.Person1Id && date.Person2Id == inputDate.Person2Id && date.RouteId == inputDate.RouteId && date.StartTime.Equals(inputDate.StartTime)));
                 try
                 {
                     if (myDate != null)
@@ -88,9 +89,17 @@ namespace MarnieWebApi.DbAccess
                     }
                     else
                     {
-                        db.Dates.Add(inputDate);
-                        db.SaveChanges();
+                        if ((dateAlreadyInDB != null))
+                        {
+                           //http response to client.
+                        }
+                        else
+                        {
+                            db.Dates.Add(inputDate);
+                            db.SaveChanges();
+                        }
                     }
+                    
                 }
                 catch (System.Exception e)
                 {

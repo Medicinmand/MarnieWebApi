@@ -76,11 +76,12 @@ namespace MarnieWebApi.DbAccess
         {
             using (var db = new MyDbContext())
             {
-                var myDate = db.Dates.SingleOrDefault(date => (date.Person2Id == inputDate.Person1Id && date.Person1Id == inputDate.Person2Id && date.RouteId == inputDate.RouteId && date.StartTime.Date.ToShortDateString().Equals(inputDate.StartTime.Date.ToShortDateString())));
+                var myDate = db.Dates.SingleOrDefault(date => (date.Person2Id == inputDate.Person1Id && date.Person1Id == inputDate.Person2Id && date.RouteId == inputDate.RouteId && date.StartTime.Equals(inputDate.StartTime)));
                 try
                 {
                     if (myDate != null)
                     {
+                        myDate.StatusP1 = 1;
                         myDate.StatusP2 = 1;
                         myDate.DateStatus = 1;
                         Update(myDate);
@@ -98,13 +99,13 @@ namespace MarnieWebApi.DbAccess
             }
         }
 
-        public void Update(Date item)
+        public void Update(Date inputDate)
         {
             using (var db = new MyDbContext())
             {
                 try
                 {
-                    db.Entry(item).State = EntityState.Modified;
+                    db.Entry(inputDate).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 catch (System.Exception e)

@@ -47,7 +47,7 @@ namespace MarnieWebApi.DbAccess
             {
                 try
                 {
-                    return db.Dates.Where(date => (date.Person1Id == personId | date.Person2Id == personId))
+                    return db.Dates.Where(date => date.Person1Id == personId | date.Person2Id == personId && date.DateStatus == 1)
                             .Include(x => x.Person1).Include(x => x.Person2).Include(x => x.Route).ToList();
                 }
                 catch (System.Exception e)
